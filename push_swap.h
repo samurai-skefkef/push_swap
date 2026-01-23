@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: soamraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/23 15:27:40 by soamraou          #+#    #+#             */
-/*   Updated: 2026/01/23 15:27:46 by soamraou         ###   ########.fr       */
+/*   Created: 2026/01/23 15:27:13 by soamraou          #+#    #+#             */
+/*   Updated: 2026/01/23 15:27:23 by soamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include <stdio.h>
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-int main(int argc, char **argv)
-{
-    if (argc == 1)
-        return (0);
-    if (are_numbers(argc, argv))
-        printf("Valid");
-    else
-        printf("no");
-}
+int are_numbers(int ac, char **av);
+
+#endif
