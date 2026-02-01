@@ -6,7 +6,7 @@
 /*   By: soamraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 15:27:40 by soamraou          #+#    #+#             */
-/*   Updated: 2026/01/23 15:27:46 by soamraou         ###   ########.fr       */
+/*   Updated: 2026/02/01 16:50:06 by soamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int main(int argc, char **argv)
 {
     if (argc == 1)
         return (0);
-    if (are_numbers(argc, argv))
-        printf("Valid");
-    else
-        printf("no");
+    if (!are_numbers(argc, argv) || is_duplic(argc, argv))
+        write (2, "Error\n", 6);
 }
