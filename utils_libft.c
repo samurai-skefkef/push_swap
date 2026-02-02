@@ -6,7 +6,7 @@
 /*   By: soamraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 16:56:49 by soamraou          #+#    #+#             */
-/*   Updated: 2026/02/01 16:59:26 by soamraou         ###   ########.fr       */
+/*   Updated: 2026/02/02 15:23:11 by soamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,34 @@ char	*ft_strchr(const char *s, int c)
 		i++;
 	}
 	return (NULL);
+}
+
+long     ft_atoi(const char *s)
+{
+        int     i;
+        int     num;
+        int     neg;
+
+        if (s == NULL)
+                return (0);
+        i = 0;
+        while (s[i] != '\0' && (s[i] == ' ' || s[i] == '\n' || s[i] == '\t'
+                        || s[i] == '\r' || s[i] == '\v' || s[i] == '\f'))
+                i++;
+        neg = 0;
+        num = 0;
+        if (s[i] == '+')
+                i++;
+        else if (s[i] == '-')
+        {
+                neg = 1;
+                i++;
+        }
+        while (ft_isdigit(s[i]))
+                num = num * 10 + (s[i++] - 48);
+        if (neg == 1)
+                num = -num;
+        return (num);
 }
 
 static	size_t	w_cnt(const char *s, char c)

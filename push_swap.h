@@ -6,7 +6,7 @@
 /*   By: soamraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 15:27:13 by soamraou          #+#    #+#             */
-/*   Updated: 2026/02/01 16:47:46 by soamraou         ###   ########.fr       */
+/*   Updated: 2026/02/02 18:07:16 by soamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,16 @@
 # define PUSH_SWAP_H
 
 #include <unistd.h>
+#include <stdlib.h>
+#include <limits.h>
 
-int is_duplic(int ac, char **av);
+int     ft_isdigit(int c);
+char    *ft_strchr(const char *s, int c);
+char    **ft_split(char const *s, char c);
+long     ft_atoi(const char *s);
+int     *list_int(char **av);
+int count_nums(char **av);
+int is_duplic(int *list, int size);
 int are_numbers(int ac, char **av);
 
 #endif

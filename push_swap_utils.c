@@ -6,7 +6,7 @@
 /*   By: soamraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 15:34:04 by soamraou          #+#    #+#             */
-/*   Updated: 2026/02/01 18:54:11 by soamraou         ###   ########.fr       */
+/*   Updated: 2026/02/02 19:58:28 by soamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,17 @@ int are_numbers(int ac, char **av)
     while (i < ac)
     {
         j = 0;
-        if (av[i][j] == '+' || av[i][j] == '-')
-            j = 1;
-        while (av[i][j] != '\0' && (ft_isdigit(av[i][j]) || av[i][j] == ' '))
-            j++;
-	if (j == 1 && (av[i][j - 1] == '+' || av[i][j - 1] == '-'))
-                        return (0);
+        while (av[i][j] != '\0' && (ft_isdigit(av[i][j]) || av[i][j] == ' ' || av[i][j] == '-' || av[i][j] == '+'))
+	{
+		if (av[i][j] == '-' || av[i][j] == '+')
+		{
+			if (!ft_isdigit(av[i][j + 1]))
+				return (0);
+			if (av[i][j - 1] == '+' || av[i][j - 1] == '-')
+				return (0);
+		}
+		j++;
+	}
         if (av[i][j] == '\0')
                 i++;
         else
@@ -35,30 +40,140 @@ int are_numbers(int ac, char **av)
     return (1);
 }
 
-int	**list(int ac, char **av)
+//the next function is for counting the number of numbers for the allocation of the list:
+/**int count_nums(char **av)
 {
 	int i;
+	int count;
+	char **split;
+	int j;
 
-	i = 0;
+	i = 1;
+	count = 0;
+	while(av[i])
+	{
+		if (ft_strchr(av[i], ' ') != NULL)
+		{
+			j = 0;
+			split = ft_split(av[i], ' ');
+			if (!split)
+				return (0);
+			while(split[j])
+			{
+				count++;
+				free(split[j]);
+				j++;
+			}
+			free(split);
+		}
+		else
+			count++;
+		i++;
+	}
+	return (count);
+}**/
 
+int count_nums(char **av)
+{
+    int i;
+    int j;
+    int count;
+    char **split;
+
+    i = 1;
+    count = 0;
+    while (av[i])
+    {
+        split = ft_split(av[i], ' ');
+        if (!split)
+            return (0);
+        j = 0;
+        while (split[j])
+        {
+            count++;
+            free(split[j]);
+            j++;
+        }
+        free(split);
+        i++;
+    }
+    return (count);
 }
 
-int is_duplic(int ac, char **av)
+
+//Now we fill the list:
+int	*list_int(char **av)
+{
+	int i;
+	int j;
+	int k;
+	char **split;
+	int *list;
+	//long nb;
+
+	i = 1;
+	k = 0;
+	list = malloc(count_nums(av) * sizeof(int));
+	if (!list)
+		return (0);
+	while(av[i])
+	{
+		j = 0;
+		split = ft_split(av[i], ' ');
+		while (split[j])
+		{
+			//nb = ft_atoi(split[j]);
+			if (ft_atoi(split[j]) < (long)INT_MIN || ft_atoi(split[j]) > (long)INT_MAX)
+				return (NULL);
+			list[k++] = (int)ft_atoi(split[j]);
+			free(split[j]);
+			j++;
+		}
+		free(split);
+		i++;
+	}
+	return (list);
+}
+
+int is_duplic(int *list, int size)
 {
     int i;
     int j;
 
-    i = 1;
-    while (i < ac - 1)
+    i = 0;
+    while (i < size)
     {
         j = i + 1;
-	while (j < ac)
-	{
-		if (ft_strlen(av[i]) == ft_strlen(av[j]) && ft_strnstr(av[i], av[j], ft_strlen(av[i])) != NULL)
-			return (1);
-		j++;
-	}
-	i++;
+        while (j < size)
+        {
+            if (list[i] == list[j])
+                return (1);
+            j++;
+        }
+        i++;
     }
     return (0);
 }
+
+
+/**int is_duplic(int *list)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while (list[i])
+    {
+	    if (!list[i + 1])
+		    return (0);
+	    j = i + 1;
+	    while (list[j])
+	    {
+	    	if (list[i] == list[j])
+			return (1);
+		j++;
+	    }
+	    i++;
+    }
+    return (0);
+}**/
