@@ -6,7 +6,7 @@
 /*   By: soamraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 15:27:13 by soamraou          #+#    #+#             */
-/*   Updated: 2026/02/02 18:07:16 by soamraou         ###   ########.fr       */
+/*   Updated: 2026/02/03 11:09:45 by soamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include <limits.h>
 
 int     ft_isdigit(int c);
-char    *ft_strchr(const char *s, int c);
 char    **ft_split(char const *s, char c);
 long     ft_atoi(const char *s);
 int     *list_int(char **av);

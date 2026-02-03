@@ -6,7 +6,7 @@
 /*   By: soamraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 16:56:49 by soamraou          #+#    #+#             */
-/*   Updated: 2026/02/02 15:23:11 by soamraou         ###   ########.fr       */
+/*   Updated: 2026/02/03 11:09:17 by soamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,66 +19,10 @@ int     ft_isdigit(int c)
         return (0);
 }
 
-size_t  ft_strlen(const char *s)
-{
-        size_t  i;
-
-        i = 0;
-        while (s[i] != '\0')
-                i++;
-        return (i);
-}
-
-char    *ft_strnstr(const char *big, const char *little, size_t n)
-{
-        size_t  i_b;
-        size_t  i_l;
-
-        if (big == NULL || little == NULL)
-                return (NULL);
-        if (little[0] == '\0')
-                return ((char *)big);
-        i_b = 0;
-        i_l = 0;
-        while (i_b + i_l < n && big[i_b + i_l] != '\0' && little[i_l] != '\0')
-        {
-                if (big[i_b + i_l] != little[i_l])
-                {
-                        i_b++;
-                        i_l = 0;
-                        continue ;
-                }
-                i_l++;
-        }
-        if (little[i_l] == '\0')
-                return ((char *)big + i_b);
-        return (NULL);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	int				i;
-	unsigned char	uc;
-
-	if (s == NULL)
-		return (NULL);
-	uc = (unsigned char)c;
-	if (uc == '\0')
-		return ((char *)s + ft_strlen(s));
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] == uc)
-			return ((char *)s + i);
-		i++;
-	}
-	return (NULL);
-}
-
 long     ft_atoi(const char *s)
 {
         int     i;
-        int     num;
+        long     num;
         int     neg;
 
         if (s == NULL)
