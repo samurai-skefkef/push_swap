@@ -6,7 +6,7 @@
 /*   By: soamraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 15:27:40 by soamraou          #+#    #+#             */
-/*   Updated: 2026/02/04 14:24:46 by soamraou         ###   ########.fr       */
+/*   Updated: 2026/02/07 15:01:59 by soamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,17 @@ static int initial_checks(char **av, int *list)
 int main(int argc, char **argv)
 {
 	int	*list;
+	t_node *a;
+	t_node *b;
 
+	b = NULL;
 	list = list_int(argv);
 	if (parse_error(argc, argv, list) == 0)
 		return (0);
 	if (count_nums(argv) == 1 || initial_checks(argv, list) == 0)
 		return (0);
+	a = build_stack_a(list, count_nums(argv));
+	free(list);
+	chunk_sort(&a, &b);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: soamraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 14:29:45 by soamraou          #+#    #+#             */
-/*   Updated: 2026/02/04 19:17:05 by soamraou         ###   ########.fr       */
+/*   Updated: 2026/02/07 14:57:33 by soamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void pa(t_node **stack_a, t_node **stack_b)
 		node_b->next = *stack_a;
 		*stack_a = node_b;
 		write(1, "pa\n", 3);
-
 	}
 }
 
